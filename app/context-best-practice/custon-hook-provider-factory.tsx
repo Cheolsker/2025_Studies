@@ -1,33 +1,4 @@
-import { createContext, useContext, useState } from "react";
-
-const createStateContext = <Value, State>(
-  useValue: (init?: Value) => State
-) => {
-  const StateContext = createContext<State | null>(null);
-  const StateProvider = ({
-    initialValue,
-    children,
-  }: {
-    initialValue?: Value;
-    children?: React.ReactNode;
-  }) => (
-    <StateContext.Provider value={useValue(initialValue)}>
-      {children}
-    </StateContext.Provider>
-  );
-
-  const useContextState = () => {
-    const value = useContext(StateContext);
-    if (value === null) {
-      throw new Error("Provider missing");
-    }
-    return value;
-  };
-
-  return [StateProvider, useContextState] as const;
-};
-
-const useNumberState = (init?: number) => useState(init || 0);
+import { createStateContext, useNumberState } from "./contexts";
 
 const [Count1Provider, useCount1] = createStateContext(useNumberState);
 const [Count2Provider, useCount2] = createStateContext(useNumberState);
