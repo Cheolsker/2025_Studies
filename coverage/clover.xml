@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1750579105588" clover="3.2.0">
+  <project timestamp="1750579105588" name="All files">
+    <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1" elements="10" coveredelements="8" complexity="0" loc="7" ncloc="7" packages="2" files="2" classes="2"/>
+    <package name="2025-studies">
+      <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="next.config.ts" path="/Users/cheolsker/Desktop/2025-studies/next.config.ts">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="2025-studies.utils">
+      <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="formatCurrency.js" path="/Users/cheolsker/Desktop/2025-studies/utils/formatCurrency.js">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="6" count="11" type="stmt"/>
+        <line num="8" count="11" type="stmt"/>
+        <line num="11" count="11" type="stmt"/>
+        <line num="14" count="11" type="stmt"/>
+        <line num="20" count="11" type="cond" truecount="2" falsecount="0"/>
+      </file>
+    </package>
+  </project>
+</coverage>
