@@ -11,28 +11,19 @@ export default function PromiseAndAsyncConfirm() {
   const [data, setData] = useState<any>(null);
 
   const handleLogin = async () => {
-    const result = await new Promise<{ success: boolean; data: any }>(
-      (resolve, reject) => {
-        createPostMutation.mutate(undefined, {
-          onSuccess: (result) => {
-            resolve({
-              success: true,
-              data: result,
-            });
-          },
-          onError: (error) => {
-            reject({
-              success: false,
-              data: error,
-            });
-          },
+    const data = await createPostMutation.mutateAsync(undefined, {
+      onSuccess: (result) => {
+        return result;
+      },
+      onError: (error) => {
+        confirmModal.confirm({
+          title: "오류 발생",
+          message: `API 호출 중 오류가 발생했습니다: ${error.message}`,
+          onConfirm: () => {},
+          onCancel: () => {},
         });
-      }
-    );
-
-    if (!result.success) {
-      return;
-    }
+      },
+    });
 
     const confirmed = await new Promise<boolean>((resolve) => {
       confirmModal.confirm({
@@ -47,11 +38,14 @@ export default function PromiseAndAsyncConfirm() {
       });
     });
 
+    console.log("@@@@ confirmed:", confirmed, "@@@@@");
+
     if (!confirmed) {
+      setData(null);
       return;
     }
 
-    setData(result.data);
+    setData(data);
   };
 
   return (
