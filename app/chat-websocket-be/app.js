@@ -9,29 +9,15 @@ const clientOptions = {
   serverApi: { version: "1", strict: true, deprecationErrors: true },
 };
 
-async function run() {
-  try {
-    // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
-    await mongoose.connect(process.env.URI, clientOptions);
-    await mongoose.connection.db.admin().command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
-    );
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await mongoose.disconnect();
-  }
-}
-run().catch(console.dir);
+mongoose
+  .connect(process.env.URI, clientOptions)
+  .then(() => {
+    console.log("MongoDB Successfully Connected...");
+  })
+  .catch((err) => {
+    console.log("MongoDB have been errors...", err);
+    mongoose.disconnect();
+  });
 
 app.use(cors());
-
-// mongoose
-//   .connect(process.env.DB, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => console.log("MongoDB connected"))
-//   .catch((err) => console.error("MongoDB connection error:", err));
-
 module.exports = app;
